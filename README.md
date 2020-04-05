@@ -6,7 +6,7 @@ Based on [PokeAPI](https://pokeapi.co/).
 ## Work in progress :)
 
 ### For client version go to:
-## 
+## [Pokedex](https://arturdziadosz.github.io/Pokedex/)
 
 ## Tech stack:
 ### `React` `Node.js` `npm` `React-App` `Sass` `RxJS` `JS` `ES6+` `HTML5` `CSS3` 
