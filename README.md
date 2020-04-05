@@ -1,12 +1,15 @@
 #Pokedex
 
+This project is a **website** with a simple form to search for your favourite pokemon.
+Based on [PokeAPI](https://pokeapi.co/).
+
 ## Work in progress :)
 
 ### For client version go to:
 ## 
 
 ## Tech stack:
-### `React` `Node.js` `npm` `React-App` `React-Scroll`  `Sass` `RxJS` `JS` `ES6+` `HTML5` `CSS3` 
+### `React` `Node.js` `npm` `React-App` `Sass` `RxJS` `JS` `ES6+` `HTML5` `CSS3` 
 
 ##
 

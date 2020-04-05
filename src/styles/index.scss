@@ -1,0 +1,21 @@
+@import 'settings/reset';
+@import 'settings/variables';
+@import 'settings/grid';
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-size: $fontSize;
+  font-family: $fontBase;
+  line-height: $lineHeight;
+  font-weight: $fontWeight;
+  background-color: $colorBackgroundW;
+  overflow-x: hidden;
+  padding: 0 !important;
+}
+
+a {
+  text-decoration: none;
+}
