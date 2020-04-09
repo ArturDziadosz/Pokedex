@@ -1,0 +1,27 @@
+@import "../styles/settings/_variables.scss";
+
+main {
+  .container {
+    padding-top: 20px;
+    .row {
+      flex-direction: column;
+      align-items: center;
+       .pokemon {
+         margin: 10px 0;
+         background-color: black;
+         border-radius: 5px;
+         height: 300px;
+         color: white;
+         display: flex;
+         flex-direction: column;
+         .pokemon__img {
+           height: 75%;
+           background-color: navajowhite;
+         }
+         .pokemon__description {
+           padding: 10px;
+         }
+       }
+    }
+  }
+}
