@@ -1,1 +1,14 @@
 @import "../styles/settings/_variables.scss";
+
+header {
+  .row {
+    .col-9 {
+
+    }
+    .col-2 {
+      span {
+        font-size: 1.6em;
+      }
+    }
+  }
+}
