@@ -1,0 +1,18 @@
+@import "../styles/settings/_variables.scss";
+
+.error {
+  border: 3px solid red;
+  margin: 10px 0;
+  border-radius: 5%;
+  padding: 15px;
+  box-shadow: 1px 1px 5px 5px lighten(red,40%);
+  h3 {
+    font-size: 2em;
+    color: red;
+    line-height: 1.2em;
+  }
+  p {
+    margin: 10px 0;
+    font-size: 1.1em;
+  }
+}
