@@ -32,7 +32,7 @@ class Pokemon extends Component {
               <div className="col-11 pokemon" onClick={this.handleGetPokemonDetails}>
                 <div className="pokemon__img" style={{backgroundImage: `url(${pokemonData.sprites.front_default}`}}/>
                 <div className="pokemon__description">
-                  <p>#00{pokemonData.id}</p>
+                  <p>#{pokemonData.id}</p>
                   <p>{pokemonData.name.charAt(0).toUpperCase() + pokemonData.name.slice(1)}</p>
                   <p>{pokemonData.types.map(type => {
                     return <span key={type.type.name}>{type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1)} </span>

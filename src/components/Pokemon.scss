@@ -10,32 +10,38 @@ main {
 
       .pokemon {
         margin: 10px 0;
-        background-color: black;
         border-radius: 5%;
-        height: 300px;
-        color: white;
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-        box-shadow: 1px 1px 5px 5px grey;
+        box-shadow: 1px 1px 3px 3px grey;
         cursor: pointer;
+        background-color: navajowhite;
 
         .pokemon__img {
-          height: 65%;
-          width: 101%;
-          background-color: navajowhite;
-          background-size: cover;
+          height: 200px;
+          background-size: contain;
           background-position: center;
           background-repeat: no-repeat;
           transition: transform 300ms;
 
           &:hover {
-            transform: scale(1.1);
+            transform: scale(1.2);
           }
         }
 
         .pokemon__description {
-          padding: 15px;
+          padding: 0 15px;
+          transform: translateY(-20px);
+
+          p {
+            text-align: right;
+            color: grey;
+
+            &:nth-of-type(2) {
+              font-weight: bold;
+              font-size: 2em;
+              margin-bottom: 10px;
+              color: black;
+            }
+          }
         }
       }
     }
