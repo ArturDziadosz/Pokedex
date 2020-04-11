@@ -17,32 +17,31 @@ class Pokemon extends Component {
     }
   }
 
+  handleGetPokemonDetails = () => {
+    this.props.handleAtParent(this.state.pokemonData.species.url);
+  };
 
   render() {
     const {pokemonData} = this.state;
 
     return (
       <>
-        <section className="container">
-          <div className="row">
-            <div className="col-11 pokemon">
-              <div className="pokemon__img"/>
-              <div className="pokemon__description">
-                <p>#001</p>
-                <p>{!pokemonData ? null : pokemonData.name}</p>
-                <p>Grass</p>
+        {!pokemonData ? null :
+          <section className="container">
+            <div className="row">
+              <div className="col-11 pokemon" onClick={this.handleGetPokemonDetails}>
+                <div className="pokemon__img" style={{backgroundImage: `url(${pokemonData.sprites.front_default}`}}/>
+                <div className="pokemon__description">
+                  <p>#00{pokemonData.id}</p>
+                  <p>{pokemonData.name.charAt(0).toUpperCase() + pokemonData.name.slice(1)}</p>
+                  <p>{pokemonData.types.map(type => {
+                    return <span key={type.type.name}>{type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1)} </span>
+                  })}</p>
+                </div>
               </div>
             </div>
-            <div className="col-11 pokemon">
-              <div className="pokemon__img"/>
-              <div className="pokemon__description">
-                <p>#002</p>
-                <p>Ivysaur</p>
-                <p>Grass</p>
-              </div>
-            </div>
-          </div>
-        </section>
+          </section>
+        }
       </>
     );
   }
