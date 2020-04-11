@@ -16,7 +16,7 @@ class Form extends Component {
     if (this.state.inputValue === "") {
       return null
     }
-    this.props.handleAtParent(this.state.inputValue);
+    this.props.handleAtParent(this.state.inputValue.toLocaleLowerCase().trim());
     this.setState({
       inputValue: "",
     })
