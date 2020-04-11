@@ -3,7 +3,7 @@ import "./App.scss"
 import Form from "./Form";
 import Pokemon from "./Pokemon";
 import Error from "./Error";
-import {colors} from "@material-ui/core";
+import PokemonDetails from "./PokemonDetails";
 
 class App extends Component {
   constructor(props) {
@@ -87,15 +87,26 @@ class App extends Component {
       <>
         <h1>Pokédex</h1>
         <Form handleAtParent={this.fetchData}/>
-        {this.state.boxWithDetails ?
-          <main>Box {this.state.pokemonDetails.base_happiness}</main> :
+        {(!this.state.data && !this.state.noMatchFound) ?
+          <main>
+            <section className="container">
+              <div className="row">
+                <div className="col-11 start">
+                  <h2>Search for a Pokémon by name or using its National Pokédex number.</h2>
+                  <p>Have fun!</p>
+                </div>
+              </div>
+            </section>
+          </main> :
+          this.state.boxWithDetails ?
+          <main><PokemonDetails pokemonData={this.state.data} pokemonDetails={this.state.pokemonDetails} pokemonEvolution={this.state.evolutionChainDetails}/></main> :
           <main>
             {this.state.noMatchFound ? <Error/> :
               <Pokemon pokemonData={this.state.data} handleAtParent={this.getEvolutionUrl}/>
             }
           </main>
         }
-        <footer> Designed by Artur Dziadosz. Based on PokeApi.</footer>
+        <footer> Designed by Artur Dziadosz. Based on <a href={"https://pokeapi.co/"} target={"_blank"}>PokeApi.</a></footer>
       </>
     );
   }

@@ -2,17 +2,41 @@
 
 h1 {
   text-align: center;
-  color: $colorTitle;
+  color: grey;
   font-size: 2em;
   padding: 30px 0;
+  font-family: $fontTitle;
 }
 
 main {
   min-height: calc(100vh - 180px);
+  .start {
+    border: 3px solid grey;
+    margin: 10px 0;
+    border-radius: 10px;
+    padding: 15px;
+    color: grey;
+    h2 {
+      font-size: 1.7em;
+      line-height: 1.2em;
+    }
+    p {
+      margin-top: 15px;
+      font-size: 1.2em;
+    }
+  }
 }
 
 footer {
   height: 40px;
   line-height: 40px;
   text-align: center;
+  border-top: 1px grey solid;
+  color: grey;
+  a {
+    color: grey;
+    &:hover {
+      color: black;
+    }
+  }
 }
