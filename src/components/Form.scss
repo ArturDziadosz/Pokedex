@@ -1,9 +1,10 @@
 @import "../styles/settings/_variables.scss";
 
-header {
+header.container {
   .row {
+    justify-content: center;
     .col-9 {
-
+      background-color: white;
     }
     .col-2 {
       span {

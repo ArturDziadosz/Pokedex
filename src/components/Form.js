@@ -33,8 +33,8 @@ class Form extends Component {
       <>
         <header className="container">
           <form className={"row"} onSubmit={this.handleSubmit}>
-            <TextField className={"col-9"} variant={"outlined"} color={"primary"} autoFocus={true}
-                       label={"Pokémon name"}
+            <TextField className={"col-9"} variant={"outlined"} autoFocus={true}
+                       label={"Pokémon name or number"}
                        type={"search"}
                        name={"inputValue"}
                        onChange={this.handleChange}
