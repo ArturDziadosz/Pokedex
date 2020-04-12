@@ -10,7 +10,7 @@ main {
 
       .pokemon {
         margin: 10px 0;
-        border-radius: 5%;
+        border-radius: 10px;
         box-shadow: 1px 1px 3px 3px grey;
         cursor: pointer;
         background-color: navajowhite;
@@ -21,6 +21,7 @@ main {
           background-position: center;
           background-repeat: no-repeat;
           transition: transform 300ms;
+          transform: scale(1.1);
 
           &:hover {
             transform: scale(1.2);
