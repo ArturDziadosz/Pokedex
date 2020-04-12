@@ -17,8 +17,9 @@ class Pokemon extends Component {
     }
   }
 
-  handleGetPokemonDetails = () => {
-    this.props.handleAtParent(this.state.pokemonData.species.url);
+  handleGetPokemonDetails = (e) => {
+    const id = e.currentTarget.id;
+    this.props.handleAtParent(this.state.pokemonData.species.url, id);
   };
 
   render() {
@@ -29,7 +30,7 @@ class Pokemon extends Component {
         {!pokemonData ? null :
           <section className="container">
             <div className="row">
-              <div className="col-11 pokemon" onClick={this.handleGetPokemonDetails}>
+              <div className="col-11 pokemon" id={this.props.id} onClick={this.handleGetPokemonDetails}>
                 <div className="pokemon__img" style={{backgroundImage: `url(${pokemonData.sprites.front_default}`}}/>
                 <div className="pokemon__description">
                   <p>#{pokemonData.id}</p>
