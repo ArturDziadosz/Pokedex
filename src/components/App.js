@@ -11,6 +11,7 @@ class App extends Component {
     this.state = {
       inputValue: "",
       api: "https://pokeapi.co/api/v2/",
+      pokemonData: [],
       data: false,
       noMatchFound: false,
       boxWithDetails: false,
@@ -19,7 +20,45 @@ class App extends Component {
     }
   }
 
-  fetchData = (inputValue) => {
+  componentDidMount() {
+    this.fetchAllPokemon(20, 0);
+  }
+
+  fetchAllPokemon = (limit, offset) => {
+    fetch(`${this.state.api}pokemon/?offset=${offset}&limit=${limit}`).then(resp => {
+      if (resp.ok) {
+        return resp.json();
+      } else {
+        throw new Error("Connection problem (primal fetch)");
+      }
+    }).then(allPokemon => {
+      allPokemon.results.forEach(pokemon => {
+        this.fetchAllPokemonData(pokemon)
+      });
+    }).catch(err => {
+      console.log(err);
+    })
+  };
+
+  fetchAllPokemonData = (pokemon) => {
+    fetch(pokemon.url).then(resp => {
+      if (resp.ok) {
+        return resp.json();
+      } else {
+        throw new Error("Connection problem (primal fetch)");
+      }
+    }).then(pokemonData => {
+      const pokemonDataTable = [...this.state.pokemonData];
+      pokemonDataTable.push(pokemonData);
+      this.setState({
+        pokemonData: pokemonDataTable
+      })
+    }).catch(err => {
+      console.log(err);
+    })
+  };
+
+  fetchData = (inputValue, boolean) => {
     this.setState({
       inputValue
     }, () => {
@@ -33,11 +72,11 @@ class App extends Component {
         this.setState({
           data,
           noMatchFound: false,
-          boxWithDetails: false
+          boxWithDetails: boolean
         });
       }).catch(err => {
         this.setState({
-          noMatchFound:true,
+          noMatchFound: true,
           boxWithDetails: false,
         });
         console.log(err)
@@ -45,7 +84,8 @@ class App extends Component {
     });
   };
 
-  getEvolutionUrl = (speciesURL) =>{
+  getEvolutionUrl = (speciesURL, id) => {
+    this.fetchData(id, true);
     fetch(speciesURL).then(resp => {
       if (resp.ok) {
         return resp.json();
@@ -84,35 +124,57 @@ class App extends Component {
 
   closeWindow = () => {
     this.setState({
-      boxWithDetails: false
+      boxWithDetails: false,
+      data: false
     })
   };
 
   render() {
+    this.state.pokemonData.sort((a,b) => {
+      return a.id - b.id;
+    });
+
+    let main;
+    if (!this.state.data && !this.state.boxWithDetails) {
+      main = <main>
+        <section className="container">
+          <div className="row">
+            <div className="col-11 start">
+              <h2>Search for a Pokémon by name or using its National Pokédex number (1-943).</h2>
+              <p>Have fun!</p>
+            </div>
+          </div>
+        </section>
+        {this.state.noMatchFound ? <Error/> :
+          this.state.pokemonData.map(pokemon => {
+            return <Pokemon pokemonData={pokemon} handleAtParent={this.getEvolutionUrl} key={pokemon.id}
+                            id={pokemon.id}/>
+          })}
+      </main>;
+    }
+
+    if (this.state.data && !this.state.boxWithDetails) {
+      main = <main>
+        {this.state.noMatchFound ? <Error/> :
+          <Pokemon pokemonData={this.state.data} handleAtParent={this.getEvolutionUrl} id={this.state.data.id}/>
+        }
+      </main>;
+    }
+
+    if (this.state.data && this.state.boxWithDetails) {
+      main = <main>
+        <PokemonDetails pokemonData={this.state.data} pokemonDetails={this.state.pokemonDetails}
+                        pokemonEvolution={this.state.evolutionChainDetails} handleAtParent={this.closeWindow}/>
+      </main>;
+    }
+
     return (
       <>
         <h1>Pokédex</h1>
         <Form handleAtParent={this.fetchData}/>
-        {(!this.state.data && !this.state.noMatchFound) ?
-          <main>
-            <section className="container">
-              <div className="row">
-                <div className="col-11 start">
-                  <h2>Search for a Pokémon by name or using its National Pokédex number.</h2>
-                  <p>Have fun!</p>
-                </div>
-              </div>
-            </section>
-          </main> :
-          this.state.boxWithDetails ?
-          <main><PokemonDetails pokemonData={this.state.data} pokemonDetails={this.state.pokemonDetails} pokemonEvolution={this.state.evolutionChainDetails} handleAtParent={this.closeWindow}/></main> :
-          <main>
-            {this.state.noMatchFound ? <Error/> :
-              <Pokemon pokemonData={this.state.data} handleAtParent={this.getEvolutionUrl}/>
-            }
-          </main>
-        }
-        <footer> Designed by Artur Dziadosz. Based on <a href={"https://pokeapi.co/"} target={"_blank"}>PokeApi.</a></footer>
+        {main}
+        <footer> Designed by Artur Dziadosz. Based on <a href={"https://pokeapi.co/"} target={"_blank"}>PokeApi.</a>
+        </footer>
       </>
     );
   }
