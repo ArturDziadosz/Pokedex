@@ -33,28 +33,30 @@ class PokemonDetails extends Component {
               })}</div>
               <p className={"pokemon__flavorText"}>{flavorText[0].flavor_text}</p>
               <div className={"pokemon__box"}>
-                <p className={"pokemon__box__abilities"}>Abilities: <br/>{pokemonData.abilities.map(ability => {
-                  return <span
-                    key={ability.ability.name}
-                    className={"box__abilities__ability"}>{ability.ability.name.charAt(0).toUpperCase() + ability.ability.name.slice(1)}<br/></span>;
-                })}
+                <div className={"pokemon__box__abilities"}>Abilities:
+                  {pokemonData.abilities.map(ability => {
+                    return <p
+                      key={ability.ability.name}
+                      className={"box__abilities__ability"}>{ability.ability.name.charAt(0).toUpperCase() + ability.ability.name.slice(1)}</p>;
+                  })}
                   <br/>
-                  <span className={"pokemon__box__height"}>Height: {pokemonData.height}</span>
-                  <br/>
-                  <span className={"pokemon__box__weight"}>Weight: {pokemonData.weight}</span>
-                </p>
-                <p className={"pokemon__box__stats"}>Statistics: <br/>{pokemonData.stats.map(stat => {
-                  return <span
-                    key={stat.stat.name}
-                    className={"box__stats__stat"}>{stat.stat.name.charAt(0).toUpperCase() + stat.stat.name.slice(1)}: {stat.base_stat}<br/></span>;
-                })}</p>
+                  <p className={"pokemon__box__height"}>Height: {pokemonData.height}</p>
+                  <p className={"pokemon__box__weight"}>Weight: {pokemonData.weight}</p>
+                </div>
+                <div className={"pokemon__box__stats"}>Statistics:
+                  {pokemonData.stats.map(stat => {
+                    return <p
+                      key={stat.stat.name}
+                      className={"box__stats__stat"}>{stat.stat.name.charAt(0).toUpperCase() + stat.stat.name.slice(1)}: {stat.base_stat}</p>;
+                  })}
+                </div>
               </div>
               <div className={"pokemon__box2"}>
                 <p>Evolutions:</p>
                 {!pokemonEvolution ? null :
                   <>
                     <p>{pokemonEvolution.chain.species.name.charAt(0).toUpperCase() +
-                      pokemonEvolution.chain.species.name.slice(1)}</p>
+                    pokemonEvolution.chain.species.name.slice(1)}</p>
                     <p className="material-icons arrow">
                       navigation
                     </p>
