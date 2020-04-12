@@ -12,7 +12,6 @@ main {
   min-height: calc(100vh - 180px);
   .start {
     border: 3px solid grey;
-    margin: 10px 0;
     border-radius: 10px;
     padding: 15px;
     color: grey;
@@ -33,6 +32,7 @@ footer {
   text-align: center;
   border-top: 1px grey solid;
   color: grey;
+  margin-top: 25px;
   a {
     color: grey;
     &:hover {

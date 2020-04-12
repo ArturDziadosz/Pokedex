@@ -5,7 +5,6 @@ main {
     .row {
       .pokemon--details {
         border: 1px solid grey;
-        margin: 10px 0 20px;
         border-radius: 10px;
         box-shadow: 1px 1px 3px 3px grey;
         background-color: navajowhite;
@@ -84,12 +83,11 @@ main {
           box-shadow: 1px 1px 3px 3px grey;
           padding: 15px;
           display: flex;
-          justify-content: space-between;
+          flex-direction: column;
 
           .pokemon__box__stats {
             text-align: right;
             font-size: 1.5em;
-            flex: 0 0 50%;
 
             .box__stats__stat {
               font-size: 0.8em;
@@ -105,7 +103,6 @@ main {
           .pokemon__box__abilities {
             text-align: left;
             font-size: 1.5em;
-            flex: 0 0 50%;
 
             .box__abilities__ability {
               font-size: 0.8em;
@@ -145,7 +142,6 @@ main {
             transform: rotateX(180deg);
             border: none;
             margin-top: 10px;
-            //font-size: em;
           }
         }
       }
