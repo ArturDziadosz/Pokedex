@@ -11,7 +11,7 @@ class Error extends Component {
               <div className="col-11 error">
                 <h3>No Pokémon Matched Your Search!</h3>
                 <p>Look out for typos.</p>
-                <p>Maybe use Pokédex number or advance search.</p>
+                <p>Maybe use Pokédex number.</p>
               </div>
             </div>
           </section>
