@@ -82,6 +82,12 @@ class App extends Component {
     })
   };
 
+  closeWindow = () => {
+    this.setState({
+      boxWithDetails: false
+    })
+  };
+
   render() {
     return (
       <>
@@ -99,7 +105,7 @@ class App extends Component {
             </section>
           </main> :
           this.state.boxWithDetails ?
-          <main><PokemonDetails pokemonData={this.state.data} pokemonDetails={this.state.pokemonDetails} pokemonEvolution={this.state.evolutionChainDetails}/></main> :
+          <main><PokemonDetails pokemonData={this.state.data} pokemonDetails={this.state.pokemonDetails} pokemonEvolution={this.state.evolutionChainDetails} handleAtParent={this.closeWindow}/></main> :
           <main>
             {this.state.noMatchFound ? <Error/> :
               <Pokemon pokemonData={this.state.data} handleAtParent={this.getEvolutionUrl}/>
