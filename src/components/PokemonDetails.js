@@ -3,6 +3,10 @@ import './PokemonDetails.scss';
 
 class PokemonDetails extends Component {
 
+  handleClose = () => {
+    this.props.handleAtParent()
+  };
+
   render() {
     const pokemonData = this.props.pokemonData;
     const pokemonDetails = this.props.pokemonDetails;
@@ -14,40 +18,63 @@ class PokemonDetails extends Component {
         <section className="container">
           <div className="row">
             <div className="col-11 pokemon--details">
-              <p className="material-icons">
+              <p className="material-icons" onClick={this.handleClose}>
                 keyboard_return
               </p>
-              <p><span>{pokemonDetails.name.charAt(0).toUpperCase() + pokemonDetails.name.slice(1)} </span>
-                <span>#{pokemonDetails.id}</span></p>
-              <div style={{backgroundImage: `url(${pokemonData.sprites.front_default})`, height: "300px"}}/>
-              <div>Types: {pokemonData.types.map(type => {
+              <p className={"pokemon__title"}><span
+                className={"pokemon__title__name"}>{pokemonDetails.name.charAt(0).toUpperCase() + pokemonDetails.name.slice(1)} </span>
+                <span className={"pokemon__title__id"}>#{pokemonDetails.id}</span></p>
+              <div className={"pokemon__img"}
+                   style={{backgroundImage: `url(${pokemonData.sprites.front_default})`}}/>
+              <div className={"pokemon__types"}>{pokemonData.types.map(type => {
                 return <span
-                  key={type.type.name}>{type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1)} </span>;
+                  key={type.type.name}
+                  className={"pokemon__types__type"}>{type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1)} </span>;
               })}</div>
-              <p>{flavorText[0].flavor_text}</p>
-              <div>Stats:
-                <p>{pokemonData.stats.map(stat => {
+              <p className={"pokemon__flavorText"}>{flavorText[0].flavor_text}</p>
+              <div className={"pokemon__box"}>
+                <p className={"pokemon__box__abilities"}>Abilities: <br/>{pokemonData.abilities.map(ability => {
                   return <span
-                    key={stat.stat.name}>{stat.stat.name.charAt(0).toUpperCase() + stat.stat.name.slice(1)}: {stat.base_stat} </span>;
-                })}</p>
-                <p>Abilities: {pokemonData.abilities.map(ability => {
+                    key={ability.ability.name}
+                    className={"box__abilities__ability"}>{ability.ability.name.charAt(0).toUpperCase() + ability.ability.name.slice(1)}<br/></span>;
+                })}
+                  <br/>
+                  <span className={"pokemon__box__height"}>Height: {pokemonData.height}</span>
+                  <br/>
+                  <span className={"pokemon__box__weight"}>Weight: {pokemonData.weight}</span>
+                </p>
+                <p className={"pokemon__box__stats"}>Statistics: <br/>{pokemonData.stats.map(stat => {
                   return <span
-                    key={ability.ability.name}>{ability.ability.name.charAt(0).toUpperCase() + ability.ability.name.slice(1)} </span>;
+                    key={stat.stat.name}
+                    className={"box__stats__stat"}>{stat.stat.name.charAt(0).toUpperCase() + stat.stat.name.slice(1)}: {stat.base_stat}<br/></span>;
                 })}</p>
               </div>
-              <p>Height: {pokemonData.height}</p>
-              <p>Weight: {pokemonData.weight}</p>
-              <p>Color: {pokemonDetails.color.name.charAt(0).toUpperCase() + pokemonDetails.color.name.slice(1)}</p>
-              <p>Habitat: {pokemonDetails.habitat.name.charAt(0).toUpperCase() + pokemonDetails.habitat.name.slice(1)}</p>
-              <div>
-                Evolutions:
-                <p> {!pokemonEvolution ? null : pokemonEvolution.chain.species.name.charAt(0).toUpperCase() + pokemonEvolution.chain.species.name.slice(1)}</p>
-                <p> {!pokemonEvolution ? null :
+              <div className={"pokemon__box2"}>
+                <p>Evolutions:</p>
+                {!pokemonEvolution ? null :
+                  <>
+                    <p>{pokemonEvolution.chain.species.name.charAt(0).toUpperCase() +
+                      pokemonEvolution.chain.species.name.slice(1)}</p>
+                    <p className="material-icons arrow">
+                      navigation
+                    </p>
+                  </>
+                }
+                {!pokemonEvolution ? null :
                   pokemonEvolution.chain.evolves_to.length !== 0
                     ? pokemonEvolution.chain.evolves_to[0].evolves_to.length !== 0
-                    ? <span>{pokemonEvolution.chain.evolves_to[0].evolves_to[0].species.name.charAt(0).toUpperCase() + pokemonEvolution.chain.evolves_to[0].evolves_to[0].species.name.slice(1)} <br />{pokemonEvolution.chain.evolves_to[0].species.name.charAt(0).toUpperCase() + pokemonEvolution.chain.evolves_to[0].species.name.slice(1)}</span>
-                    : pokemonEvolution.chain.evolves_to[0].species.name.charAt(0).toUpperCase() + pokemonEvolution.chain.evolves_to[0].species.name.slice(1)
-                    : "Ten pokemon nie ewoluuje."}</p>
+                    ?
+                    <>
+                      <p>{pokemonEvolution.chain.evolves_to[0].evolves_to[0].species.name.charAt(0).toUpperCase() + pokemonEvolution.chain.evolves_to[0].evolves_to[0].species.name.slice(1)}</p>
+                      <p className="material-icons arrow">
+                        navigation
+                      </p>
+                      <p>{pokemonEvolution.chain.evolves_to[0].species.name.charAt(0).toUpperCase() + pokemonEvolution.chain.evolves_to[0].species.name.slice(1)}</p>
+                    </>
+                    :
+                    <p>{pokemonEvolution.chain.evolves_to[0].species.name.charAt(0).toUpperCase() + pokemonEvolution.chain.evolves_to[0].species.name.slice(1)}</p>
+                    : <p>This Pokémon does not evolve.</p>
+                }
               </div>
             </div>
           </div>
