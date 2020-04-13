@@ -7,6 +7,8 @@ import PokemonDetails from "./PokemonDetails";
 import Filter from "./Filter";
 import More from "./More"
 
+import {Button} from "@material-ui/core";
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -25,7 +27,9 @@ class App extends Component {
         zaFilter: false,
         ascentFilter: true,
         descentFilter: false
-      }
+      },
+      currentPage: 1,
+      pokemonPerPage: 10,
     }
   }
 
@@ -143,6 +147,10 @@ class App extends Component {
   };
 
   changeFilter = id => {
+    this.setState({
+      currentPage: 1
+    });
+
     switch (id) {
       case 'az':
         this.setState({
@@ -186,23 +194,29 @@ class App extends Component {
     }
   };
 
+  handleChangePage = (e, i) => {
+    this.setState({
+      currentPage: i
+    })
+  };
+
   render() {
-    const filter = this.state.filter;
+    const {pokemonData, filter, currentPage, pokemonPerPage} = this.state;
 
     if (filter.ascentFilter) {
-      this.state.pokemonData.sort((a, b) => {
+      pokemonData.sort((a, b) => {
         return a.id - b.id;
       });
     }
 
     if (filter.descentFilter) {
-      this.state.pokemonData.sort((a, b) => {
+      pokemonData.sort((a, b) => {
         return b.id - a.id;
       });
     }
 
     if (filter.azFilter) {
-      this.state.pokemonData.sort((a, b) => {
+      pokemonData.sort((a, b) => {
         const nameA = a.name;
         const nameB = b.name;
         if (nameA < nameB) {
@@ -216,7 +230,7 @@ class App extends Component {
     }
 
     if (filter.zaFilter) {
-      this.state.pokemonData.sort((a, b) => {
+      pokemonData.sort((a, b) => {
         const nameA = a.name;
         const nameB = b.name;
         if (nameA > nameB) {
@@ -229,6 +243,20 @@ class App extends Component {
       });
     }
 
+    const indexOfLast = currentPage * pokemonPerPage;
+    const indexOfFirst = indexOfLast - pokemonPerPage;
+    const pageNumber = [];
+    const viewedPokemon = pokemonData.slice(indexOfFirst, indexOfLast);
+
+    for (let i = 1; i <= Math.ceil(pokemonData.length / pokemonPerPage); i++) {
+      const element = <li key={i} onClick={e => this.handleChangePage(e, i)}
+                          ><Button className={currentPage === i ? "active" : ""}>{i}</Button></li>;
+      pageNumber.push(element);
+    }
+
+    if (pageNumber.length === 1) {
+      pageNumber.pop();
+    }
 
     let main;
     if (!this.state.data && !this.state.boxWithDetails) {
@@ -249,10 +277,19 @@ class App extends Component {
           {this.state.noMatchFound ? null :
             <>
               <Filter activeFilter={this.state.filter} handleAtParent={this.changeFilter}/>
-              {this.state.pokemonData.map(pokemon => {
-                return <Pokemon pokemonData={pokemon} handleAtParent={this.getEvolutionUrl} key={pokemon.id}
-                                id={pokemon.id}/>
-              })}
+              <section className="container">
+                <ul className="row">
+                  {viewedPokemon.map(pokemon => {
+                    return <Pokemon pokemonData={pokemon} handleAtParent={this.getEvolutionUrl} key={pokemon.id}
+                                    id={pokemon.id}/>
+                  })}
+                </ul>
+              </section>
+              <section className="container">
+                <ul className="row row--pagination">
+                  {pageNumber}
+                </ul>
+              </section>
               <More nextUrl={this.state.nextPokemon} handleAtParent={this.fetchAllPokemon}/>
             </>
           }
@@ -273,7 +310,11 @@ class App extends Component {
               </div>
             </section>
           </> :
-          <Pokemon pokemonData={this.state.data} handleAtParent={this.getEvolutionUrl} id={this.state.data.id}/>
+          <section className="container">
+            <ul className="row">
+              <Pokemon pokemonData={this.state.data} handleAtParent={this.getEvolutionUrl} id={this.state.data.id}/>
+            </ul>
+          </section>
         }
       </main>;
     }
@@ -282,7 +323,7 @@ class App extends Component {
       main =
         <main>
           <PokemonDetails pokemonData={this.state.data} pokemonDetails={this.state.pokemonDetails}
-                        pokemonEvolution={this.state.evolutionChainDetails} handleAtParent={this.closeWindow}/>
+                          pokemonEvolution={this.state.evolutionChainDetails} handleAtParent={this.closeWindow}/>
         </main>;
     }
 
@@ -291,7 +332,8 @@ class App extends Component {
         <h1>Pokédex</h1>
         <Form handleAtParent={this.fetchData}/>
         {main}
-        <footer> Designed by Artur Dziadosz. Based on <a href={"https://pokeapi.co/"} target={"_blank"}>PokeApi.</a>
+        <footer> Designed by Artur Dziadosz. Based on <a href={"https://pokeapi.co/"} target={"_blank"}
+                                                         rel={"noopener noreferrer"}>PokeApi.</a>
         </footer>
       </>
     );
