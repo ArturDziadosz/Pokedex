@@ -11,7 +11,7 @@ main {
         position: relative;
         overflow: hidden;
 
-        .material-icons {
+        .pokemon__exit {
           font-size: 3em;
           padding: 5px;
           border-right: 3px solid grey;
@@ -130,6 +130,10 @@ main {
           p {
             font-size: 1.5em;
 
+            &:first-of-type {
+              align-self: flex-start;
+            }
+
             &:nth-of-type(2n+2) {
               font-size: 1.5em;
               color: grey;
@@ -137,6 +141,12 @@ main {
               display: block;
             }
           }
+
+          p.active {
+            color: black;
+            text-decoration: underline;
+          }
+
           .arrow {
             position: relative;
             transform: rotateX(180deg);

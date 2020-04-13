@@ -18,7 +18,7 @@ class PokemonDetails extends Component {
         <section className="container">
           <div className="row">
             <div className="col-11 pokemon--details">
-              <p className="material-icons" onClick={this.handleClose}>
+              <p className="material-icons pokemon__exit" onClick={this.handleClose}>
                 keyboard_return
               </p>
               <p className={"pokemon__title"}><span
@@ -55,7 +55,7 @@ class PokemonDetails extends Component {
                 <p>Evolutions:</p>
                 {!pokemonEvolution ? null :
                   <>
-                    <p>{pokemonEvolution.chain.species.name.charAt(0).toUpperCase() +
+                    <p className={pokemonDetails.name === pokemonEvolution.chain.species.name ? "active" : ""}>{pokemonEvolution.chain.species.name.charAt(0).toUpperCase() +
                     pokemonEvolution.chain.species.name.slice(1)}</p>
                     <p className="material-icons arrow">
                       navigation
@@ -67,14 +67,14 @@ class PokemonDetails extends Component {
                     ? pokemonEvolution.chain.evolves_to[0].evolves_to.length !== 0
                     ?
                     <>
-                      <p>{pokemonEvolution.chain.evolves_to[0].evolves_to[0].species.name.charAt(0).toUpperCase() + pokemonEvolution.chain.evolves_to[0].evolves_to[0].species.name.slice(1)}</p>
+                      <p className={pokemonDetails.name === pokemonEvolution.chain.evolves_to[0].species.name ? "active" : ""}>{pokemonEvolution.chain.evolves_to[0].species.name.charAt(0).toUpperCase() + pokemonEvolution.chain.evolves_to[0].species.name.slice(1)}</p>
                       <p className="material-icons arrow">
                         navigation
                       </p>
-                      <p>{pokemonEvolution.chain.evolves_to[0].species.name.charAt(0).toUpperCase() + pokemonEvolution.chain.evolves_to[0].species.name.slice(1)}</p>
+                      <p className={pokemonDetails.name === pokemonEvolution.chain.evolves_to[0].evolves_to[0].species.name ? "active" : ""}>{pokemonEvolution.chain.evolves_to[0].evolves_to[0].species.name.charAt(0).toUpperCase() + pokemonEvolution.chain.evolves_to[0].evolves_to[0].species.name.slice(1)}</p>
                     </>
                     :
-                    <p>{pokemonEvolution.chain.evolves_to[0].species.name.charAt(0).toUpperCase() + pokemonEvolution.chain.evolves_to[0].species.name.slice(1)}</p>
+                    <p className={pokemonDetails.name === pokemonEvolution.chain.evolves_to[0].species.name ? "active" : ""}>{pokemonEvolution.chain.evolves_to[0].species.name.charAt(0).toUpperCase() + pokemonEvolution.chain.evolves_to[0].species.name.slice(1)}</p>
                     : <p>This Pokémon does not evolve.</p>
                 }
               </div>
