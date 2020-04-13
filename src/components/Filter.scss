@@ -9,6 +9,7 @@ main {
       .col-2 {
         background-color: grey;
         color: white;
+        min-height: 42px;
 
         &:hover {
           background-color: black;

@@ -11,7 +11,7 @@ class Filter extends Component {
   };
 
   render() {
-    const activeFilter = this.props.activeFilter;
+    const {activeFilter} = this.props;
 
     return (
       <>
