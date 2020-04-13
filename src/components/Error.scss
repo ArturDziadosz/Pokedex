@@ -6,6 +6,7 @@
   border-radius: 10px;
   padding: 15px;
   box-shadow: 1px 1px 3px 3px lighten(red,40%);
+  position: relative;
   h3 {
     font-size: 2em;
     color: red;
@@ -17,6 +18,25 @@
     font-size: 1.1em;
     &:last-of-type {
       margin-bottom: 0;
+    }
+  }
+  div {
+    font-size: 3em;
+    padding: 5px;
+    color: red;
+    border-left: 3px solid red;
+    border-top: 3px solid red;
+    border-radius: 5px 0 0 0;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    transition: 300ms;
+
+    &:hover {
+      color: white;
+      background-color: red;
     }
   }
 }

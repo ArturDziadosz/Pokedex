@@ -3,6 +3,10 @@ import './Error.scss';
 
 class Error extends Component {
 
+  handleClose = () => {
+    this.props.handleAtParent()
+  };
+
   render() {
     return (
       <>
@@ -12,6 +16,9 @@ class Error extends Component {
                 <h3>No Pokémon Matched Your Search!</h3>
                 <p>Look out for typos.</p>
                 <p>Maybe use Pokédex number.</p>
+                <div className="material-icons" onClick={this.handleClose}>
+                  keyboard_return
+                </div>
               </div>
             </div>
           </section>
