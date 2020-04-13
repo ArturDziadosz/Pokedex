@@ -5,7 +5,7 @@ import {Button} from "@material-ui/core";
 
 class More extends Component {
 
-  handleUploadNewPokemon = e => {
+  handleUploadNewPokemon = () => {
     this.props.handleAtParent(this.props.nextUrl)
   };
 
