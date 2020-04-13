@@ -4,6 +4,10 @@ main {
   .container {
     padding-top: 25px;
 
+    &:nth-of-type(3) {
+      padding-top: 0;
+    }
+
     .row {
       flex-direction: column;
       align-items: center;
@@ -13,6 +17,7 @@ main {
         box-shadow: 1px 1px 3px 3px grey;
         cursor: pointer;
         background-color: navajowhite;
+        margin-top: 25px;
 
         .pokemon__img {
           height: 200px;

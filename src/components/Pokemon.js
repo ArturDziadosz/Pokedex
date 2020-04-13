@@ -28,9 +28,7 @@ class Pokemon extends Component {
     return (
       <>
         {!pokemonData ? null :
-          <section className="container">
-            <div className="row">
-              <div className="col-11 pokemon" id={this.props.id} onClick={this.handleGetPokemonDetails}>
+              <li className="col-11 pokemon" id={this.props.id} onClick={this.handleGetPokemonDetails}>
                 <div className="pokemon__img" style={{backgroundImage: `url(${pokemonData.sprites.front_default}`}}/>
                 <div className="pokemon__description">
                   <p>#{pokemonData.id}</p>
@@ -39,9 +37,7 @@ class Pokemon extends Component {
                     return <span key={type.type.name}>{type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1)} </span>
                   })}</p>
                 </div>
-              </div>
-            </div>
-          </section>
+              </li>
         }
       </>
     );
