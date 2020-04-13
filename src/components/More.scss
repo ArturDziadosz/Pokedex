@@ -1,0 +1,21 @@
+@import "../styles/settings/_variables.scss";
+
+button.moreBtn {
+  display: block;
+  margin: 0 auto;
+  background-color: grey;
+  color: white;
+
+  &:hover {
+    background-color: black;
+  }
+
+  span {
+    span {
+      font-size: 2.5em;
+      display: block;
+    }
+  }
+}
+
+
