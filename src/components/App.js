@@ -7,8 +7,6 @@ import PokemonDetails from "./PokemonDetails";
 import Filter from "./Filter";
 import More from "./More"
 
-import {Button} from "@material-ui/core";
-
 class App extends Component {
   constructor(props) {
     super(props);
