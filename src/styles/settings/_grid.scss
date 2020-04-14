@@ -24,3 +24,23 @@ $singleColWidth: 100%/($numOfColumns);
     }
   }
 }
+
+@media (min-width: 1000px) {
+  .container {
+    max-width: 1000px;
+
+    .row {
+      width: 45%;
+    }
+  }
+}
+
+@media (min-width: 1500px) {
+  .container {
+    max-width: 1500px;
+
+    .row {
+      width: 30%;
+    }
+  }
+}
