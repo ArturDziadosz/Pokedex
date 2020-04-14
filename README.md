@@ -1,15 +1,20 @@
-#Pokedex
+#Pokédex
 
-This project is a **website** with a simple form to search for your favourite pokemon.
+This project is a **website** with a simple form to search for your favourite pokémon.
 Based on [PokeAPI](https://pokeapi.co/).
 
-## Work in progress :)
+## Built features
+
+* name or id search
+* filter (ascending and descending, alphabetical and numerical)
+* pagination
+* loading more pokémons
 
 ### For client version go to:
-## [Pokedex](https://arturdziadosz.github.io/Pokedex/)
+## [Pokédex](https://arturdziadosz.github.io/Pokedex/)
 
 ## Tech stack:
-### `React` `Node.js` `npm` `React-App` `Sass` `RxJS` `JS` `ES6+` `HTML5` `CSS3` 
+### `React` `Node.js` `npm` `React-App` `Sass` `RxJS` `JS` `ES6+` `HTML5` `CSS3` `gh-pages` `RWD` `Playing with API` `material-ui` 
 
 ##
 
@@ -41,3 +46,7 @@ The build is minified and the filenames include the hashes.<br />
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `npm run deploy`
+
+Deploy your site. Remember first to change homepage directory in package.jason.
