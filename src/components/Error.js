@@ -11,7 +11,7 @@ class Error extends Component {
     return (
       <>
           <section className="container">
-            <div className="row">
+            <div className="row row--error">
               <div className="col-11 error">
                 <h3>No Pokémon Matched Your Search!</h3>
                 <p>Look out for typos.</p>
