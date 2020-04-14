@@ -3,16 +3,19 @@
 header.container {
   .row {
     justify-content: center;
+
     .col-9 {
       background-color: white;
 
       label {
         color: grey;
       }
+
       fieldset {
         border-color: grey;
       }
     }
+
     .col-2 {
       span {
         font-size: 1.6em;

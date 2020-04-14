@@ -267,7 +267,7 @@ class App extends Component {
             null
           }
           <section className="container">
-            <div className="row">
+            <div className="row row--start">
               <div className="col-11 start">
                 <h2>Search for a Pokémon by name or using its National Pokédex number (1-802).</h2>
                 <p>Have fun!</p>
@@ -278,7 +278,7 @@ class App extends Component {
             <>
               <Filter activeFilter={this.state.filter} handleAtParent={this.changeFilter}/>
               <section className="container">
-                <ul className="row">
+                <ul className="row row--pokemon">
                   {viewedPokemon.map(pokemon => {
                     return <Pokemon pokemonData={pokemon} handleAtParent={this.getEvolutionUrl} key={pokemon.id}
                                     id={pokemon.id}/>
@@ -302,7 +302,7 @@ class App extends Component {
           <>
             <Error handleAtParent={this.closeWindow}/>
             <section className="container">
-              <div className="row">
+              <div className="row row--start">
                 <div className="col-11 start">
                   <h2>Search for a Pokémon by name or using its National Pokédex number (1-802).</h2>
                   <p>Have fun!</p>
@@ -311,7 +311,7 @@ class App extends Component {
             </section>
           </> :
           <section className="container">
-            <ul className="row">
+            <ul className="row row--pokemon row--singlePokemon">
               <Pokemon pokemonData={this.state.data} handleAtParent={this.getEvolutionUrl} id={this.state.data.id}/>
             </ul>
           </section>
