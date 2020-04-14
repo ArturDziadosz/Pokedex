@@ -2,7 +2,9 @@
 
 main {
   .container {
-    .row {
+    .row--detailedPokemon {
+      justify-content: center;
+
       .pokemon--details {
         border: 1px solid grey;
         border-radius: 10px;
@@ -31,7 +33,7 @@ main {
         .pokemon__title {
           text-align: right;
           line-height: 55px;
-          font-size: 2em;
+          font-size: 1.5em;
           border-bottom: 3px solid grey;
           z-index: 10;
 
@@ -152,6 +154,24 @@ main {
             transform: rotateX(180deg);
             border: none;
             margin-top: 10px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 500px) {
+  main {
+    .container {
+      .row--detailedPokemon {
+        .pokemon--details {
+          .pokemon__title {
+            font-size: 2em;
+          }
+          .pokemon__box {
+            flex-direction: row;
+            justify-content: space-between;
           }
         }
       }

@@ -16,7 +16,7 @@ class PokemonDetails extends Component {
     return (
       <>
         <section className="container">
-          <div className="row">
+          <div className="row row--detailedPokemon">
             <div className="col-11 pokemon--details">
               <p className="material-icons pokemon__exit" onClick={this.handleClose}>
                 keyboard_return
