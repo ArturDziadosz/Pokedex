@@ -1,6 +1,6 @@
 {
   "homepage": "https://arturdziadosz.github.io/Pokedex/",
-  "name": "pokedex",
+  "name": "pokédex",
   "version": "1.0.0",
   "private": true,
   "dependencies": {
