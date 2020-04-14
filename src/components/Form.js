@@ -32,12 +32,12 @@ class Form extends Component {
     return (
       <>
         <header className="container">
-          <form className={"row"} onSubmit={this.handleSubmit}>
+          <form className={"row"} onSubmit={e => this.handleSubmit(e)}>
             <TextField className={"col-9"} variant={"outlined"} autoFocus={true}
                        label={"Pokémon name or number"}
                        type={"search"}
                        name={"inputValue"}
-                       onChange={this.handleChange}
+                       onChange={e => this.handleChange(e)}
                        value={this.state.inputValue}
             />
             <Button className={"col-2"} variant={"contained"} color={"primary"} type={"submit"}>

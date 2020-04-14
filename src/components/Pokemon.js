@@ -17,7 +17,7 @@ class Pokemon extends Component {
     }
   }
 
-  handleGetPokemonDetails = (e) => {
+  handleGetPokemonDetails = e => {
     const id = e.currentTarget.id;
     this.props.handleAtParent(this.state.pokemonData.species.url, id);
   };
@@ -28,16 +28,17 @@ class Pokemon extends Component {
     return (
       <>
         {!pokemonData ? null :
-              <li className="col-11 pokemon" id={this.props.id} onClick={this.handleGetPokemonDetails}>
-                <div className="pokemon__img" style={{backgroundImage: `url(${pokemonData.sprites.front_default}`}}/>
-                <div className="pokemon__description">
-                  <p>#{pokemonData.id}</p>
-                  <p>{pokemonData.name.charAt(0).toUpperCase() + pokemonData.name.slice(1)}</p>
-                  <p>{pokemonData.types.map(type => {
-                    return <span key={type.type.name}>{type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1)} </span>
-                  })}</p>
-                </div>
-              </li>
+          <li className="col-11 pokemon" id={pokemonData.id} onClick={e => this.handleGetPokemonDetails(e)}>
+            <div className="pokemon__img" style={{backgroundImage: `url(${pokemonData.sprites.front_default}`}}/>
+            <div className="pokemon__description">
+              <p>#{pokemonData.id}</p>
+              <p>{pokemonData.name.charAt(0).toUpperCase() + pokemonData.name.slice(1)}</p>
+              <p>{pokemonData.types.map(type => {
+                return <span
+                  key={type.type.name}>{type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1)} </span>
+              })}</p>
+            </div>
+          </li>
         }
       </>
     );

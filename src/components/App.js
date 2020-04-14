@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import "./App.scss"
+
 import Form from "./Form";
-import Pokemon from "./Pokemon";
-import Error from "./Error";
-import PokemonDetails from "./PokemonDetails";
 import Filter from "./Filter";
+import Error from "./Error";
+import Pokemon from "./Pokemon";
+import PokemonDetails from "./PokemonDetails";
 import More from "./More"
 
 import {Button} from "@material-ui/core";
@@ -15,18 +16,18 @@ class App extends Component {
     this.state = {
       inputValue: "",
       api: "https://pokeapi.co/api/v2/",
-      pokemonData: [],
-      data: false,
+      pokemons: [],
+      searchedPokemon: false,
       noMatchFound: false,
       boxWithDetails: false,
       pokemonDetails: "",
       evolutionChainDetails: "",
-      nextPokemon: "",
+      nextPokemonsUrl: "",
       filter: {
         azFilter: false,
         zaFilter: false,
-        ascentFilter: true,
-        descentFilter: false
+        ascendFilter: true,
+        descendFilter: false
       },
       currentPage: 1,
       pokemonPerPage: 10,
@@ -34,47 +35,47 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.fetchAllPokemon(`${this.state.api}pokemon/`);
+    this.fetchAllPokemons(`${this.state.api}pokemon/`);
   }
 
-  fetchAllPokemon = (url) => {
+  fetchAllPokemons = (url) => {
     fetch(url).then(resp => {
       if (resp.ok) {
         return resp.json();
       } else {
         throw new Error("Connection problem (primal fetch)");
       }
-    }).then(allPokemon => {
+    }).then(allPokemons => {
       this.setState({
-        nextPokemon: allPokemon.next
+        nextPokemonsUrl: allPokemons.next
       });
-      allPokemon.results.forEach(pokemon => {
-        this.fetchAllPokemonData(pokemon)
+      allPokemons.results.forEach(pokemon => {
+        this.fetchAllPokemonsData(pokemon)
       });
     }).catch(err => {
       console.log(err);
     })
   };
 
-  fetchAllPokemonData = (pokemon) => {
+  fetchAllPokemonsData = (pokemon) => {
     fetch(pokemon.url).then(resp => {
       if (resp.ok) {
         return resp.json();
       } else {
         throw new Error("Connection problem (primal fetch)");
       }
-    }).then(pokemonData => {
-      const pokemonDataTable = [...this.state.pokemonData];
-      pokemonDataTable.push(pokemonData);
+    }).then(pokemons => {
+      const pokemonsTable = [...this.state.pokemons];
+      pokemonsTable.push(pokemons);
       this.setState({
-        pokemonData: pokemonDataTable
+        pokemons: pokemonsTable
       })
     }).catch(err => {
       console.log(err);
     })
   };
 
-  fetchData = (inputValue, boolean) => {
+  fetchPokemon = (inputValue, boolean) => {
     this.setState({
       inputValue
     }, () => {
@@ -84,9 +85,9 @@ class App extends Component {
         } else {
           throw new Error("Connection problem (primal fetch)");
         }
-      }).then(data => {
+      }).then(pokemon => {
         this.setState({
-          data,
+          searchedPokemon: pokemon,
           noMatchFound: false,
           boxWithDetails: boolean
         });
@@ -101,17 +102,17 @@ class App extends Component {
   };
 
   getEvolutionUrl = (speciesURL, id) => {
-    this.fetchData(id, true);
+    this.fetchPokemon(id, true);
     fetch(speciesURL).then(resp => {
       if (resp.ok) {
         return resp.json();
       } else {
         throw new Error("Connection problem (Evolution URL)");
       }
-    }).then(data => {
-      this.renderChain(data.evolution_chain.url);
+    }).then(species => {
+      this.renderChain(species.evolution_chain.url);
       this.setState({
-        pokemonDetails: data
+        pokemonDetails: species
       }, () => {
         this.setState({
           boxWithDetails: true
@@ -129,9 +130,9 @@ class App extends Component {
       } else {
         throw new Error("Connection problem (Render Chain)");
       }
-    }).then(data => {
+    }).then(pokemonEvolution => {
       this.setState({
-        evolutionChainDetails: data
+        evolutionChainDetails: pokemonEvolution
       })
     }).catch(err => {
       console.log(err);
@@ -141,7 +142,7 @@ class App extends Component {
   closeWindow = () => {
     this.setState({
       boxWithDetails: false,
-      data: false,
+      searchedPokemon: false,
       noMatchFound: false
     })
   };
@@ -157,8 +158,8 @@ class App extends Component {
           filter: {
             azFilter: true,
             zaFilter: false,
-            ascentFilter: false,
-            descentFilter: false
+            ascendFilter: false,
+            descendFilter: false
           }
         });
         break;
@@ -167,8 +168,8 @@ class App extends Component {
           filter: {
             azFilter: false,
             zaFilter: true,
-            ascentFilter: false,
-            descentFilter: false
+            ascendFilter: false,
+            descendFilter: false
           }
         });
         break;
@@ -177,8 +178,8 @@ class App extends Component {
           filter: {
             azFilter: false,
             zaFilter: false,
-            ascentFilter: false,
-            descentFilter: true
+            ascendFilter: false,
+            descendFilter: true
           }
         });
         break;
@@ -187,8 +188,8 @@ class App extends Component {
           filter: {
             azFilter: false,
             zaFilter: false,
-            ascentFilter: true,
-            descentFilter: false
+            ascendFilter: true,
+            descendFilter: false
           }
         });
     }
@@ -201,22 +202,23 @@ class App extends Component {
   };
 
   render() {
-    const {pokemonData, filter, currentPage, pokemonPerPage} = this.state;
+    const {pokemons, searchedPokemon, noMatchFound, boxWithDetails, pokemonDetails, evolutionChainDetails, nextPokemonsUrl, filter, currentPage, pokemonPerPage} = this.state;
 
-    if (filter.ascentFilter) {
-      pokemonData.sort((a, b) => {
+    //FILTER
+    if (filter.ascendFilter) {
+      pokemons.sort((a, b) => {
         return a.id - b.id;
       });
     }
 
-    if (filter.descentFilter) {
-      pokemonData.sort((a, b) => {
+    if (filter.descendFilter) {
+      pokemons.sort((a, b) => {
         return b.id - a.id;
       });
     }
 
     if (filter.azFilter) {
-      pokemonData.sort((a, b) => {
+      pokemons.sort((a, b) => {
         const nameA = a.name;
         const nameB = b.name;
         if (nameA < nameB) {
@@ -230,7 +232,7 @@ class App extends Component {
     }
 
     if (filter.zaFilter) {
-      pokemonData.sort((a, b) => {
+      pokemons.sort((a, b) => {
         const nameA = a.name;
         const nameB = b.name;
         if (nameA > nameB) {
@@ -243,14 +245,15 @@ class App extends Component {
       });
     }
 
+    //PAGINATION
     const indexOfLast = currentPage * pokemonPerPage;
     const indexOfFirst = indexOfLast - pokemonPerPage;
     const pageNumber = [];
-    const viewedPokemon = pokemonData.slice(indexOfFirst, indexOfLast);
+    const viewedPokemons = pokemons.slice(indexOfFirst, indexOfLast);
 
-    for (let i = 1; i <= Math.ceil(pokemonData.length / pokemonPerPage); i++) {
+    for (let i = 1; i <= Math.ceil(pokemons.length / pokemonPerPage); i++) {
       const element = <li key={i} onClick={e => this.handleChangePage(e, i)}
-                          ><Button className={currentPage === i ? "active" : ""}>{i}</Button></li>;
+      ><Button className={currentPage === i ? "active" : ""}>{i}</Button></li>;
       pageNumber.push(element);
     }
 
@@ -258,11 +261,12 @@ class App extends Component {
       pageNumber.pop();
     }
 
+    //MAIN TAG
     let main;
-    if (!this.state.data && !this.state.boxWithDetails) {
+    if (!searchedPokemon && !boxWithDetails) {
       main =
         <main>
-          {this.state.noMatchFound ?
+          {noMatchFound ?
             <Error handleAtParent={this.closeWindow}/> :
             null
           }
@@ -274,12 +278,12 @@ class App extends Component {
               </div>
             </div>
           </section>
-          {this.state.noMatchFound ? null :
+          {noMatchFound ? null :
             <>
-              <Filter activeFilter={this.state.filter} handleAtParent={this.changeFilter}/>
+              <Filter activeFilter={filter} handleAtParent={this.changeFilter}/>
               <section className="container">
                 <ul className="row row--pokemon">
-                  {viewedPokemon.map(pokemon => {
+                  {viewedPokemons.map(pokemon => {
                     return <Pokemon pokemonData={pokemon} handleAtParent={this.getEvolutionUrl} key={pokemon.id}
                                     id={pokemon.id}/>
                   })}
@@ -290,47 +294,49 @@ class App extends Component {
                   {pageNumber}
                 </ul>
               </section>
-              <More nextUrl={this.state.nextPokemon} handleAtParent={this.fetchAllPokemon}/>
+              <More nextUrl={nextPokemonsUrl} handleAtParent={this.fetchAllPokemons}/>
             </>
           }
         </main>;
     }
 
-    if (this.state.data && !this.state.boxWithDetails) {
-      main = <main>
-        {this.state.noMatchFound ?
-          <>
-            <Error handleAtParent={this.closeWindow}/>
-            <section className="container">
-              <div className="row row--start">
-                <div className="col-11 start">
-                  <h2>Search for a Pokémon by name or using its National Pokédex number (1-802).</h2>
-                  <p>Have fun!</p>
-                </div>
-              </div>
-            </section>
-          </> :
-          <section className="container">
-            <ul className="row row--pokemon row--singlePokemon">
-              <Pokemon pokemonData={this.state.data} handleAtParent={this.getEvolutionUrl} id={this.state.data.id}/>
-            </ul>
-          </section>
-        }
-      </main>;
-    }
-
-    if (this.state.data && this.state.boxWithDetails) {
+    if (searchedPokemon && !boxWithDetails) {
       main =
         <main>
-          <PokemonDetails pokemonData={this.state.data} pokemonDetails={this.state.pokemonDetails}
-                          pokemonEvolution={this.state.evolutionChainDetails} handleAtParent={this.closeWindow}/>
+          {noMatchFound ?
+            <>
+              <Error handleAtParent={this.closeWindow}/>
+              <section className="container">
+                <div className="row row--start">
+                  <div className="col-11 start">
+                    <h2>Search for a Pokémon by name or using its National Pokédex number (1-802).</h2>
+                    <p>Have fun!</p>
+                  </div>
+                </div>
+              </section>
+            </> :
+            <section className="container">
+              <ul className="row row--pokemon row--singlePokemon">
+                <Pokemon pokemonData={searchedPokemon} handleAtParent={this.getEvolutionUrl}
+                         id={searchedPokemon.id}/>
+              </ul>
+            </section>
+          }
+        </main>;
+    }
+
+    if (searchedPokemon && boxWithDetails) {
+      main =
+        <main>
+          <PokemonDetails pokemonData={searchedPokemon} pokemonDetails={pokemonDetails}
+                          pokemonEvolution={evolutionChainDetails} handleAtParent={this.closeWindow}/>
         </main>;
     }
 
     return (
       <>
         <h1>Pokédex</h1>
-        <Form handleAtParent={this.fetchData}/>
+        <Form handleAtParent={this.fetchPokemon}/>
         {main}
         <footer> Designed by Artur Dziadosz. Based on <a href={"https://pokeapi.co/"} target={"_blank"}
                                                          rel={"noopener noreferrer"}>PokeApi.</a>

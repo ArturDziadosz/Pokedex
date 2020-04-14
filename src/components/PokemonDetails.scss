@@ -1,23 +1,25 @@
 @import "../styles/settings/_variables.scss";
 
 main {
+
   .container {
+
     .row--detailedPokemon {
       justify-content: center;
 
       .pokemon--details {
-        border: 1px solid grey;
+        background-color: $pokemonBackground;
+        border: 1px solid $colorText;
         border-radius: 10px;
-        box-shadow: 1px 1px 3px 3px grey;
-        background-color: navajowhite;
+        box-shadow: 1px 1px 3px 3px $colorText;
         position: relative;
         overflow: hidden;
 
         .pokemon__exit {
           font-size: 3em;
           padding: 5px;
-          border-right: 3px solid grey;
-          border-bottom: 3px solid grey;
+          border-right: 3px solid $colorText;
+          border-bottom: 3px solid $colorText;
           border-radius: 5px 0 0 0;
           cursor: pointer;
           position: absolute;
@@ -25,25 +27,25 @@ main {
           transition: 300ms;
 
           &:hover {
-            color: white;
-            background-color: grey;
+            color: $colorTextAlt;
+            background-color: $colorText;
           }
         }
 
         .pokemon__title {
-          text-align: right;
-          line-height: 55px;
           font-size: 1.5em;
-          border-bottom: 3px solid grey;
+          line-height: 55px;
+          text-align: right;
+          border-bottom: 3px solid $colorText;
           z-index: 10;
 
           .pokemon__title__name {
+            color: $colorBoldedText;
             font-weight: bold;
-            color: black;
           }
 
           .pokemon__title__id {
-            color: grey;
+            color: $colorText;
             margin: 0 15px;
           }
         }
@@ -61,10 +63,10 @@ main {
         }
 
         .pokemon__types {
-          text-align: right;
           font-size: 1.5em;
-          transform: translateY(-20px);
+          text-align: right;
           margin-right: 15px;
+          transform: translateY(-20px);
 
           .pokemon__types__type {
             padding: 0 5px;
@@ -72,28 +74,28 @@ main {
         }
 
         .pokemon__flavorText {
-          padding: 0 15px;
-          text-align: justify;
-          color: grey;
+          color: $colorText;
           font-size: 1.2em;
+          text-align: justify;
           margin-bottom: 15px;
+          padding: 0 15px;
         }
 
         .pokemon__box {
-          border-top: 1px solid grey;
-          border-bottom: 1px solid grey;
-          box-shadow: 1px 1px 3px 3px grey;
+          border-top: 1px solid $colorText;
+          border-bottom: 1px solid $colorText;
+          box-shadow: 1px 1px 3px 3px $colorText;
           padding: 15px;
           display: flex;
           flex-direction: column;
 
           .pokemon__box__stats {
-            text-align: right;
             font-size: 1.5em;
+            text-align: right;
 
             .box__stats__stat {
               font-size: 0.8em;
-              color: grey;
+              color: $colorText;
 
               &:first-of-type {
                 margin-top: 10px;
@@ -103,12 +105,12 @@ main {
           }
 
           .pokemon__box__abilities {
-            text-align: left;
             font-size: 1.5em;
+            text-align: left;
 
             .box__abilities__ability {
+              color: $colorText;
               font-size: 0.8em;
-              color: grey;
 
               &:first-of-type {
                 margin-top: 10px;
@@ -118,7 +120,7 @@ main {
           }
 
           .pokemon__box__height, .pokemon__box__weight {
-            color: grey;
+            color: $colorText;
             font-size: 0.8em;
           }
         }
@@ -137,23 +139,23 @@ main {
             }
 
             &:nth-of-type(2n+2) {
+              color: $colorText;
               font-size: 1.5em;
-              color: grey;
               margin-top: 10px;
               display: block;
             }
           }
 
           p.active {
-            color: black;
+            color: $colorBoldedText;
             text-decoration: underline;
           }
 
           .arrow {
-            position: relative;
             transform: rotateX(180deg);
             border: none;
             margin-top: 10px;
+            position: relative;
           }
         }
       }
@@ -163,12 +165,17 @@ main {
 
 @media (min-width: 500px) {
   main {
+
     .container {
+
       .row--detailedPokemon {
+
         .pokemon--details {
+
           .pokemon__title {
             font-size: 2em;
           }
+
           .pokemon__box {
             flex-direction: row;
             justify-content: space-between;

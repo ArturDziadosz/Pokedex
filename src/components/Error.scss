@@ -6,21 +6,20 @@
     justify-content: center;
 
     .error {
-      border: 3px solid red;
-      margin: 10px 0;
-      border-radius: 10px;
       padding: 15px;
-      box-shadow: 1px 1px 3px 3px lighten(red, 40%);
+      border: 3px solid $colorAlertText;
+      border-radius: 10px;
+      box-shadow: 1px 1px 3px 3px lighten($colorAlertText, 40%);
       position: relative;
 
       h3 {
+        color: $colorAlertText;
         font-size: 1.4em;
-        color: red;
         line-height: 1.2em;
       }
 
       p {
-        color: grey;
+        color: $colorText;
         margin: 10px 0;
 
         &:last-of-type {
@@ -29,11 +28,11 @@
       }
 
       div {
+        color: $colorAlertText;
         font-size: 2em;
         padding: 5px;
-        color: red;
-        border-left: 3px solid red;
-        border-top: 3px solid red;
+        border-left: 3px solid $colorAlertText;
+        border-top: 3px solid $colorAlertText;
         border-radius: 5px 0 0 0;
         cursor: pointer;
         position: absolute;
@@ -43,8 +42,8 @@
         transition: 300ms;
 
         &:hover {
-          color: white;
-          background-color: red;
+          color: $colorTextAlt;
+          background-color: $colorAlertText;
         }
       }
     }
@@ -53,9 +52,13 @@
 
 @media (min-width: 500px) {
   main {
+
     .container {
+
       .row--error {
+
         .error {
+
           h3 {
             font-size: 1.6em;
           }
