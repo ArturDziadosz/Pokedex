@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import './Pokemon.scss';
 
+import pokeball from '../assets/pokemon-1536847_1280.png';
+
 class Pokemon extends Component {
   constructor(props) {
     super(props);
@@ -24,12 +26,13 @@ class Pokemon extends Component {
 
   render() {
     const {pokemonData} = this.state;
+    console.log(pokemonData.sprites.front_default);
 
     return (
       <>
         {!pokemonData ? null :
           <li className="col-11 pokemon" id={pokemonData.id} onClick={e => this.handleGetPokemonDetails(e)}>
-            <div className="pokemon__img" style={{backgroundImage: `url(${pokemonData.sprites.front_default}`}}/>
+            <div className="pokemon__img" style={pokemonData.sprites.front_default ? {backgroundImage: `url(${pokemonData.sprites.front_default})`} : {backgroundImage: `url(${pokeball})`, transform: "scale(.9)"}}/>
             <div className="pokemon__description">
               <p>#{pokemonData.id}</p>
               <p>{pokemonData.name.charAt(0).toUpperCase() + pokemonData.name.slice(1)}</p>
