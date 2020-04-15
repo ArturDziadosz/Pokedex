@@ -26,7 +26,6 @@ class Pokemon extends Component {
 
   render() {
     const {pokemonData} = this.state;
-    console.log(pokemonData.sprites.front_default);
 
     return (
       <>
