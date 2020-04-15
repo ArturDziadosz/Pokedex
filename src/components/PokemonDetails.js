@@ -35,7 +35,13 @@ class PokemonDetails extends Component {
   }
 
   handleClose = () => {
-    this.props.handleAtParent()
+    this.props.handleAtParentClose()
+  };
+
+  handleGetPokemonDetails = e => {
+    const name = e.currentTarget.dataset.name;
+    const url = e.currentTarget.id;
+    this.props.handleAtParentGet(url, name);
   };
 
   render() {
@@ -99,8 +105,13 @@ class PokemonDetails extends Component {
                     }}/> :
                     <>
                       <p
-                        className={pokemonDetails.name === pokemonEvolution.chain.species.name ? "active" : ""}>{pokemonEvolution.chain.species.name.charAt(0).toUpperCase() +
-                      pokemonEvolution.chain.species.name.slice(1)}</p>
+                        className={pokemonDetails.name === pokemonEvolution.chain.species.name ? "active" : ""}
+                        onClick={e => this.handleGetPokemonDetails(e)}
+                        id={pokemonEvolution.chain.species.url}
+                        data-name={pokemonEvolution.chain.species.name}>
+                        {pokemonEvolution.chain.species.name.charAt(0).toUpperCase() +
+                        pokemonEvolution.chain.species.name.slice(1)}
+                      </p>
                       <p className="material-icons arrow">
                         navigation
                       </p>
@@ -111,17 +122,29 @@ class PokemonDetails extends Component {
                       pokemonEvolution.chain.evolves_to[0].evolves_to.length !== 0 ?
                         <>
                           <p
-                            className={pokemonDetails.name === pokemonEvolution.chain.evolves_to[0].species.name ? "active" : ""}>{pokemonEvolution.chain.evolves_to[0].species.name.charAt(0).toUpperCase() + pokemonEvolution.chain.evolves_to[0].species.name.slice(1)}
+                            className={pokemonDetails.name === pokemonEvolution.chain.evolves_to[0].species.name ? "active" : ""}
+                            onClick={e => this.handleGetPokemonDetails(e)}
+                            id={pokemonEvolution.chain.evolves_to[0].species.url}
+                            data-name={pokemonEvolution.chain.evolves_to[0].species.name}>
+                            {pokemonEvolution.chain.evolves_to[0].species.name.charAt(0).toUpperCase() + pokemonEvolution.chain.evolves_to[0].species.name.slice(1)}
                           </p>
                           <p className="material-icons arrow">
                             navigation
                           </p>
                           <p
-                            className={pokemonDetails.name === pokemonEvolution.chain.evolves_to[0].evolves_to[0].species.name ? "active" : ""}>{pokemonEvolution.chain.evolves_to[0].evolves_to[0].species.name.charAt(0).toUpperCase() + pokemonEvolution.chain.evolves_to[0].evolves_to[0].species.name.slice(1)}
+                            className={pokemonDetails.name === pokemonEvolution.chain.evolves_to[0].evolves_to[0].species.name ? "active" : ""}
+                            onClick={e => this.handleGetPokemonDetails(e)}
+                            id={pokemonEvolution.chain.evolves_to[0].evolves_to[0].species.url}
+                            data-name={pokemonEvolution.chain.evolves_to[0].evolves_to[0].species.name}>
+                            {pokemonEvolution.chain.evolves_to[0].evolves_to[0].species.name.charAt(0).toUpperCase() + pokemonEvolution.chain.evolves_to[0].evolves_to[0].species.name.slice(1)}
                           </p>
                         </> :
                         <p
-                          className={pokemonDetails.name === pokemonEvolution.chain.evolves_to[0].species.name ? "active" : ""}>{pokemonEvolution.chain.evolves_to[0].species.name.charAt(0).toUpperCase() + pokemonEvolution.chain.evolves_to[0].species.name.slice(1)}
+                          className={pokemonDetails.name === pokemonEvolution.chain.evolves_to[0].species.name ? "active" : ""}
+                          onClick={e => this.handleGetPokemonDetails(e)}
+                          id={pokemonEvolution.chain.evolves_to[0].species.url}
+                          data-name={pokemonEvolution.chain.evolves_to[0].species.name}>
+                          {pokemonEvolution.chain.evolves_to[0].species.name.charAt(0).toUpperCase() + pokemonEvolution.chain.evolves_to[0].species.name.slice(1)}
                         </p>
                       : <p>This Pokémon does not evolve.</p>
                   }

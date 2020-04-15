@@ -144,6 +144,11 @@ main {
               margin-top: 10px;
               display: block;
             }
+
+            &:hover {
+              color: $colorBoldedText;
+              cursor: pointer;
+            }
           }
 
           p.active {

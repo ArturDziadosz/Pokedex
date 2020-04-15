@@ -358,7 +358,7 @@ class App extends Component {
       main =
         <main name={"main"}>
           <PokemonDetails pokemonData={searchedPokemon} pokemonDetails={pokemonDetails}
-                          pokemonEvolution={evolutionChainDetails} handleAtParent={this.closeWindow}/>
+                          pokemonEvolution={evolutionChainDetails} handleAtParentClose={this.closeWindow} handleAtParentGet={this.getEvolutionUrl}/>
         </main>;
     }
 

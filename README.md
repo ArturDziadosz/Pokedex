@@ -9,12 +9,14 @@ Based on [PokeAPI](https://pokeapi.co/).
 * filter (ascending and descending, alphabetical and numerical)
 * pagination
 * loading more pokémons
+* evolution chain
+* react-scroll
 
 ### For client version go to:
 ## [Pokédex](https://arturdziadosz.github.io/Pokedex/)
 
 ## Tech stack:
-### `React` `Node.js` `npm` `React-App` `Sass` `RxJS` `JS` `ES6+` `HTML5` `CSS3` `gh-pages` `RWD` `Playing with API` `material-ui` 
+### `React` `Node.js` `npm` `React-App` `Sass` `RxJS` `JS` `ES6+` `HTML5` `CSS3` `gh-pages` `RWD` `Playing with API` `material-ui` `react-scroll` 
 
 ##
 
