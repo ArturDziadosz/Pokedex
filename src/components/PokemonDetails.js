@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './PokemonDetails.scss';
 
 import Error from "./Error";
+import pokeball from "../assets/pokemon-1536847_1280.png";
 
 class PokemonDetails extends Component {
   constructor(props) {
@@ -84,7 +85,14 @@ class PokemonDetails extends Component {
                 </div>
                 <div className={"pokemon__box2"}>
                   <p>Evolutions:</p>
-                  {!pokemonEvolution ? null :
+                  {typeof pokemonEvolution === "string" ? <div style={{
+                      width: "100%", height: "200px",
+                      backgroundImage: `url(${pokeball})`,
+                      backgroundSize: "40%",
+                      backgroundPosition: "center",
+                      backgroundRepeat: "no-repeat",
+                      animation: "shake 3 600ms 500ms linear"
+                    }}/> :
                     <>
                       <p
                         className={pokemonDetails.name === pokemonEvolution.chain.species.name ? "active" : ""}>{pokemonEvolution.chain.species.name.charAt(0).toUpperCase() +
@@ -94,7 +102,7 @@ class PokemonDetails extends Component {
                       </p>
                     </>
                   }
-                  {!pokemonEvolution ? null :
+                  {typeof pokemonEvolution === "string" ? null :
                     pokemonEvolution.chain.evolves_to.length !== 0 ?
                       pokemonEvolution.chain.evolves_to[0].evolves_to.length !== 0 ?
                         <>
