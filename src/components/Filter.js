@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import './Filter.scss';
 
+import {Link} from 'react-scroll';
+
 import {Button} from "@material-ui/core";
 
 class Filter extends Component {
@@ -23,19 +25,31 @@ class Filter extends Component {
     return (
       <>
         <section className="container">
-          <div className="row row--filter">
-            <Button className="col-2" onClick={e => this.handleChangeFilter(e)} id={"az"} style={activeFilter.azFilter ? {backgroundColor: "black"} : null}>
-              <i className="fas fa-sort-alpha-down" />
-            </Button>
-            <Button className="col-2" onClick={e => this.handleChangeFilter(e)} id={"za"} style={activeFilter.zaFilter ? {backgroundColor: "black"} : null}>
-              <i className="fas fa-sort-alpha-down-alt" />
-            </Button>
-            <Button className="col-2" onClick={e => this.handleChangeFilter(e)} id={"19"} style={activeFilter.ascendFilter ? {backgroundColor: "black"} : null}>
-              <i className="fas fa-sort-numeric-down" />
-            </Button>
-            <Button className="col-2" onClick={e => this.handleChangeFilter(e)} id={"91"} style={activeFilter.descendFilter ? {backgroundColor: "black"} : null}>
-              <i className="fas fa-sort-numeric-down-alt" />
-            </Button>
+          <div className="row row--filter" name={"rowFilter"}>
+            <Link to={"rowFilter"} smooth={true} duration={500} offset={-25}>
+              <Button className="col-2" onClick={e => this.handleChangeFilter(e)} id={"az"}
+                      style={activeFilter.azFilter ? {backgroundColor: "black"} : null}>
+                <i className="fas fa-sort-alpha-down"/>
+              </Button>
+            </Link>
+            <Link to={"rowFilter"} smooth={true} duration={500} offset={-25}>
+              <Button className="col-2" onClick={e => this.handleChangeFilter(e)} id={"za"}
+                      style={activeFilter.zaFilter ? {backgroundColor: "black"} : null}>
+                <i className="fas fa-sort-alpha-down-alt"/>
+              </Button>
+            </Link>
+            <Link to={"rowFilter"} smooth={true} duration={500} offset={-25}>
+              <Button className="col-2" onClick={e => this.handleChangeFilter(e)} id={"19"}
+                      style={activeFilter.ascendFilter ? {backgroundColor: "black"} : null}>
+                <i className="fas fa-sort-numeric-down"/>
+              </Button>
+            </Link>
+            <Link to={"rowFilter"} smooth={true} duration={500} offset={-25}>
+              <Button className="col-2" onClick={e => this.handleChangeFilter(e)} id={"91"}
+                      style={activeFilter.descendFilter ? {backgroundColor: "black"} : null}>
+                <i className="fas fa-sort-numeric-down-alt"/>
+              </Button>
+            </Link>
           </div>
         </section>
       </>

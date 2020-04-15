@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import './PokemonDetails.scss';
 
+import {Link} from "react-scroll";
+
 import Error from "./Error";
 import pokeball from "../assets/pokemon-1536847_1280.png";
 
@@ -50,9 +52,11 @@ class PokemonDetails extends Component {
           <section className="container">
             <div className="row row--detailedPokemon">
               <div className="col-11 pokemon--details">
-                <p className="material-icons pokemon__exit" onClick={e => this.handleClose(e)}>
-                  keyboard_return
-                </p>
+                <Link to={"title"} smooth={true} duration={500}>
+                  <p className="material-icons pokemon__exit" onClick={e => this.handleClose(e)}>
+                    keyboard_return
+                  </p>
+                </Link>
                 <p className={"pokemon__title"}><span
                   className={"pokemon__title__name"}>{pokemonDetails.name.charAt(0).toUpperCase() + pokemonDetails.name.slice(1)} </span>
                   <span className={"pokemon__title__id"}>#{pokemonDetails.id}</span></p>

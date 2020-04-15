@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './Pokemon.scss';
 
+import {Link} from 'react-scroll';
 import pokeball from '../assets/pokemon-1536847_1280.png';
 
 class Pokemon extends Component {
@@ -30,16 +31,22 @@ class Pokemon extends Component {
     return (
       <>
         {!pokemonData ? null :
-          <li className="col-11 pokemon" id={pokemonData.id} onClick={e => this.handleGetPokemonDetails(e)}>
-            <div className="pokemon__img" style={pokemonData.sprites.front_default ? {backgroundImage: `url(${pokemonData.sprites.front_default})`} : {backgroundImage: `url(${pokeball})`, transform: "scale(.9)"}}/>
-            <div className="pokemon__description">
-              <p>#{pokemonData.id}</p>
-              <p>{pokemonData.name.charAt(0).toUpperCase() + pokemonData.name.slice(1)}</p>
-              <p>{pokemonData.types.map(type => {
-                return <span
-                  key={type.type.name}>{type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1)} </span>
-              })}</p>
-            </div>
+          <li className="col-11 pokemon">
+            <Link to={"main"} smooth={true} duration={500} offset={10} id={pokemonData.id} onClick={e => this.handleGetPokemonDetails(e)}>
+              <div className="pokemon__img"
+                   style={pokemonData.sprites.front_default ? {backgroundImage: `url(${pokemonData.sprites.front_default})`} : {
+                     backgroundImage: `url(${pokeball})`,
+                     transform: "scale(.9)"
+                   }}/>
+              <div className="pokemon__description">
+                <p>#{pokemonData.id}</p>
+                <p>{pokemonData.name.charAt(0).toUpperCase() + pokemonData.name.slice(1)}</p>
+                <p>{pokemonData.types.map(type => {
+                  return <span
+                    key={type.type.name}>{type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1)} </span>
+                })}</p>
+              </div>
+            </Link>
           </li>
         }
       </>

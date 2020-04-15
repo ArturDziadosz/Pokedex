@@ -71,12 +71,37 @@ footer {
   text-align: center;
   margin-top: 25px;
   border-top: 1px solid $colorText;
+  position: relative;
 
   a {
     color: $colorText;
 
     &:hover {
       color: $colorBoldedText;
+    }
+  }
+
+  button.MuiButton-root {
+    color: $colorTextAlt;
+    background-color: $colorText;
+    font-size: 2em;
+    position: absolute;
+    right: 0;
+    top: -42px;
+    border-radius: 4px 4px 0 0;
+    opacity: .5;
+
+    &:hover {
+      opacity: 1;
+      background-color: $colorBoldedText;
+    }
+  }
+}
+
+@media (min-width: 500px) {
+  footer {
+    button.MuiButton-root {
+      right: 15px;
     }
   }
 }

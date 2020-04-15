@@ -8,6 +8,7 @@ import Pokemon from "./Pokemon";
 import PokemonDetails from "./PokemonDetails";
 import More from "./More"
 
+import {Link} from 'react-scroll';
 import {Button} from "@material-ui/core";
 import pokeball from "../assets/pokemon-1536847_1280.png";
 
@@ -263,23 +264,23 @@ class App extends Component {
     }
 
     //LOADING DIV
-    const loadingDiv = <li className={"col-11 pokemon"} style={{height: "282px"}}>
-        <div style={{
-          width: "100%",
-          height: "100%",
-          backgroundImage: `url(${pokeball})`,
-          backgroundSize: "40%",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          animation: "shake 3 600ms 500ms linear"
-        }}/>
-      </li>;
+    const loadingDiv = <li className={"col-11 pokemon marginFix"} style={{height: "282px"}}>
+      <div style={{
+        width: "100%",
+        height: "100%",
+        backgroundImage: `url(${pokeball})`,
+        backgroundSize: "40%",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        animation: "shake 3 600ms 300ms linear"
+      }}/>
+    </li>;
 
     //MAIN TAG
     let main;
     if (!searchedPokemon && !boxWithDetails) {
       main =
-        <main>
+        <main name={"main"}>
           {noMatchFound ?
             <Error handleAtParent={this.closeWindow}/> :
             null
@@ -299,6 +300,8 @@ class App extends Component {
                 <ul className="row row--pokemon">
                   {pokemons.length < 20 ?
                     <>
+                      {loadingDiv}
+                      {loadingDiv}
                       {loadingDiv}
                       {loadingDiv}
                       {loadingDiv}
@@ -328,7 +331,7 @@ class App extends Component {
 
     if (searchedPokemon && !boxWithDetails) {
       main =
-        <main>
+        <main name={"main"}>
           {noMatchFound ?
             <>
               <Error handleAtParent={this.closeWindow}/>
@@ -353,7 +356,7 @@ class App extends Component {
 
     if (searchedPokemon && boxWithDetails) {
       main =
-        <main>
+        <main name={"main"}>
           <PokemonDetails pokemonData={searchedPokemon} pokemonDetails={pokemonDetails}
                           pokemonEvolution={evolutionChainDetails} handleAtParent={this.closeWindow}/>
         </main>;
@@ -361,11 +364,19 @@ class App extends Component {
 
     return (
       <>
-        <h1>Pokédex</h1>
+        <h1 name={"title"}>Pokédex</h1>
         <Form handleAtParent={this.fetchPokemon}/>
         {main}
-        <footer> Designed by Artur Dziadosz. Based on <a href={"https://pokeapi.co/"} target={"_blank"}
-                                                         rel={"noopener noreferrer"}>PokeApi.</a>
+        <footer>
+          <span>Designed by Artur Dziadosz. Based on
+            <a href={"https://pokeapi.co/"} target={"_blank"}
+               rel={"noopener noreferrer"}>PokeApi.</a>
+          </span>
+          <Link to={"title"} smooth={true} duration={500}>
+            <Button>
+              <i className="fas fa-level-up-alt"/>
+            </Button>
+          </Link>
         </footer>
       </>
     );
