@@ -1,22 +1,23 @@
 {
   "files": {
-    "main.css": "/Pokedex/static/css/main.42a64f18.chunk.css",
-    "main.js": "/Pokedex/static/js/main.691edf5f.chunk.js",
-    "main.js.map": "/Pokedex/static/js/main.691edf5f.chunk.js.map",
+    "main.css": "/Pokedex/static/css/main.a3922fa9.chunk.css",
+    "main.js": "/Pokedex/static/js/main.86daf38c.chunk.js",
+    "main.js.map": "/Pokedex/static/js/main.86daf38c.chunk.js.map",
     "runtime-main.js": "/Pokedex/static/js/runtime-main.d24fb926.js",
     "runtime-main.js.map": "/Pokedex/static/js/runtime-main.d24fb926.js.map",
-    "static/js/2.e20fc350.chunk.js": "/Pokedex/static/js/2.e20fc350.chunk.js",
-    "static/js/2.e20fc350.chunk.js.map": "/Pokedex/static/js/2.e20fc350.chunk.js.map",
+    "static/js/2.04f1214e.chunk.js": "/Pokedex/static/js/2.04f1214e.chunk.js",
+    "static/js/2.04f1214e.chunk.js.map": "/Pokedex/static/js/2.04f1214e.chunk.js.map",
     "index.html": "/Pokedex/index.html",
-    "precache-manifest.2b5f077312b163bb20bc437eb8ff6a45.js": "/Pokedex/precache-manifest.2b5f077312b163bb20bc437eb8ff6a45.js",
+    "precache-manifest.b38ec582900b68dff63f4b9ae6feadc5.js": "/Pokedex/precache-manifest.b38ec582900b68dff63f4b9ae6feadc5.js",
     "service-worker.js": "/Pokedex/service-worker.js",
-    "static/css/main.42a64f18.chunk.css.map": "/Pokedex/static/css/main.42a64f18.chunk.css.map",
-    "static/js/2.e20fc350.chunk.js.LICENSE.txt": "/Pokedex/static/js/2.e20fc350.chunk.js.LICENSE.txt"
+    "static/css/main.a3922fa9.chunk.css.map": "/Pokedex/static/css/main.a3922fa9.chunk.css.map",
+    "static/js/2.04f1214e.chunk.js.LICENSE.txt": "/Pokedex/static/js/2.04f1214e.chunk.js.LICENSE.txt",
+    "static/media/pokemon-1536847_1280.png": "/Pokedex/static/media/pokemon-1536847_1280.ccaba949.png"
   },
   "entrypoints": [
     "static/js/runtime-main.d24fb926.js",
-    "static/js/2.e20fc350.chunk.js",
-    "static/css/main.42a64f18.chunk.css",
-    "static/js/main.691edf5f.chunk.js"
+    "static/js/2.04f1214e.chunk.js",
+    "static/css/main.a3922fa9.chunk.css",
+    "static/js/main.86daf38c.chunk.js"
   ]
 }
