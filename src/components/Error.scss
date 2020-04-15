@@ -24,6 +24,7 @@
 
         &:last-of-type {
           margin-bottom: 0;
+          padding-right: 30px;
         }
       }
 
@@ -47,27 +48,45 @@
         }
       }
     }
+
+    .error--alt {
+
+      h3 {
+        padding-right: 45px;
+      }
+
+      .material-icons {
+        font-size: 3em;
+        border-radius: 5px 5px 0 0;
+      }
+    }
   }
 }
 
 @media (min-width: 500px) {
-  main {
+  .container {
 
-    .container {
+    .row--error {
 
-      .row--error {
+      .error {
 
-        .error {
+        h3 {
+          font-size: 1.6em;
+        }
 
-          h3 {
-            font-size: 1.6em;
-          }
-          p {
-            font-size: 1.2em;
-          }
-          div {
-            font-size: 2.8em;
-          }
+        p {
+          font-size: 1.2em;
+        }
+
+        div {
+          font-size: 2.8em;
+        }
+      }
+
+      .error--alt {
+
+        .material-icons {
+          font-size: 3.2em;
         }
       }
     }
