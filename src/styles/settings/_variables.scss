@@ -16,6 +16,20 @@ $fontSize: 15px;
 $lineHeight: 24px;
 $fontWeight: 400;
 
+//ANIMATION
+@keyframes shake {
+  0%, 40%, 60%, 100% {
+    transform: rotate(0);
+  }
+
+  45%, 55% {
+    transform: rotate(-5deg);
+  }
+
+  50% {
+    transform: rotate(5deg);
+  }
+}
 
 
 

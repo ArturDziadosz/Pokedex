@@ -9,6 +9,7 @@ import PokemonDetails from "./PokemonDetails";
 import More from "./More"
 
 import {Button} from "@material-ui/core";
+import pokeball from "../assets/pokemon-1536847_1280.png";
 
 class App extends Component {
   constructor(props) {
@@ -261,6 +262,19 @@ class App extends Component {
       pageNumber.pop();
     }
 
+    //LOADING DIV
+    const loadingDiv = <li className={"col-11 pokemon"} style={{height: "282px"}}>
+        <div style={{
+          width: "100%",
+          height: "100%",
+          backgroundImage: `url(${pokeball})`,
+          backgroundSize: "40%",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          animation: "shake 3 600ms 500ms linear"
+        }}/>
+      </li>;
+
     //MAIN TAG
     let main;
     if (!searchedPokemon && !boxWithDetails) {
@@ -283,10 +297,22 @@ class App extends Component {
               <Filter activeFilter={filter} handleAtParent={this.changeFilter}/>
               <section className="container">
                 <ul className="row row--pokemon">
-                  {viewedPokemons.map(pokemon => {
-                    return <Pokemon pokemonData={pokemon} handleAtParent={this.getEvolutionUrl} key={pokemon.id}
-                                    id={pokemon.id}/>
-                  })}
+                  {pokemons.length < 20 ?
+                    <>
+                      {loadingDiv}
+                      {loadingDiv}
+                      {loadingDiv}
+                      {loadingDiv}
+                    </> :
+                    <>
+                      {
+                        viewedPokemons.map(pokemon => {
+                          return <Pokemon pokemonData={pokemon} handleAtParent={this.getEvolutionUrl} key={pokemon.id}
+                                          id={pokemon.id}/>
+                        })
+                      }
+                    </>
+                  }
                 </ul>
               </section>
               <section className="container">
