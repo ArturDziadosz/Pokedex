@@ -137,31 +137,31 @@ main {
             &:first-of-type {
               align-self: flex-start;
             }
-
-            &:nth-of-type(2n+2) {
-              color: $colorText;
-              font-size: 1.5em;
-              margin-top: 10px;
-              display: block;
-            }
-
-            &:hover {
-              color: $colorBoldedText;
-              cursor: pointer;
-            }
           }
 
-          p.active {
-            color: $colorBoldedText;
-            text-decoration: underline;
-          }
-
-          .arrow {
-            transform: rotateX(180deg);
-            border: none;
+          a {
+            color: $colorText;
             margin-top: 10px;
-            position: relative;
+            display: block;
           }
+
+          &:hover {
+            color: $colorBoldedText;
+            cursor: pointer;
+          }
+        }
+
+
+        p.active {
+          color: $colorBoldedText;
+          text-decoration: underline;
+        }
+
+        .arrow {
+          transform: rotateX(180deg);
+          border: none;
+          margin-top: 10px;
+          position: relative;
         }
       }
     }

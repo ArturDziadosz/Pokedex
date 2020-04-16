@@ -104,14 +104,16 @@ class PokemonDetails extends Component {
                       animation: "shake 3 600ms 500ms linear"
                     }}/> :
                     <>
-                      <p
-                        className={pokemonDetails.name === pokemonEvolution.chain.species.name ? "active" : ""}
-                        onClick={e => this.handleGetPokemonDetails(e)}
-                        id={pokemonEvolution.chain.species.url}
-                        data-name={pokemonEvolution.chain.species.name}>
-                        {pokemonEvolution.chain.species.name.charAt(0).toUpperCase() +
-                        pokemonEvolution.chain.species.name.slice(1)}
-                      </p>
+                      <Link to={"main"} smooth={true} duration={500} offset={10}>
+                        <p
+                          className={pokemonDetails.name === pokemonEvolution.chain.species.name ? "active" : ""}
+                          onClick={e => this.handleGetPokemonDetails(e)}
+                          id={pokemonEvolution.chain.species.url}
+                          data-name={pokemonEvolution.chain.species.name}>
+                          {pokemonEvolution.chain.species.name.charAt(0).toUpperCase() +
+                          pokemonEvolution.chain.species.name.slice(1)}
+                        </p>
+                      </Link>
                       <p className="material-icons arrow">
                         navigation
                       </p>
@@ -121,6 +123,29 @@ class PokemonDetails extends Component {
                     pokemonEvolution.chain.evolves_to.length !== 0 ?
                       pokemonEvolution.chain.evolves_to[0].evolves_to.length !== 0 ?
                         <>
+                          <Link to={"main"} smooth={true} duration={500} offset={10}>
+                            <p
+                              className={pokemonDetails.name === pokemonEvolution.chain.evolves_to[0].species.name ? "active" : ""}
+                              onClick={e => this.handleGetPokemonDetails(e)}
+                              id={pokemonEvolution.chain.evolves_to[0].species.url}
+                              data-name={pokemonEvolution.chain.evolves_to[0].species.name}>
+                              {pokemonEvolution.chain.evolves_to[0].species.name.charAt(0).toUpperCase() + pokemonEvolution.chain.evolves_to[0].species.name.slice(1)}
+                            </p>
+                          </Link>
+                          <p className="material-icons arrow">
+                            navigation
+                          </p>
+                          <Link to={"main"} smooth={true} duration={500} offset={10}>
+                            <p
+                              className={pokemonDetails.name === pokemonEvolution.chain.evolves_to[0].evolves_to[0].species.name ? "active" : ""}
+                              onClick={e => this.handleGetPokemonDetails(e)}
+                              id={pokemonEvolution.chain.evolves_to[0].evolves_to[0].species.url}
+                              data-name={pokemonEvolution.chain.evolves_to[0].evolves_to[0].species.name}>
+                              {pokemonEvolution.chain.evolves_to[0].evolves_to[0].species.name.charAt(0).toUpperCase() + pokemonEvolution.chain.evolves_to[0].evolves_to[0].species.name.slice(1)}
+                            </p>
+                          </Link>
+                        </> :
+                        <Link to={"main"} smooth={true} duration={500} offset={10}>
                           <p
                             className={pokemonDetails.name === pokemonEvolution.chain.evolves_to[0].species.name ? "active" : ""}
                             onClick={e => this.handleGetPokemonDetails(e)}
@@ -128,24 +153,7 @@ class PokemonDetails extends Component {
                             data-name={pokemonEvolution.chain.evolves_to[0].species.name}>
                             {pokemonEvolution.chain.evolves_to[0].species.name.charAt(0).toUpperCase() + pokemonEvolution.chain.evolves_to[0].species.name.slice(1)}
                           </p>
-                          <p className="material-icons arrow">
-                            navigation
-                          </p>
-                          <p
-                            className={pokemonDetails.name === pokemonEvolution.chain.evolves_to[0].evolves_to[0].species.name ? "active" : ""}
-                            onClick={e => this.handleGetPokemonDetails(e)}
-                            id={pokemonEvolution.chain.evolves_to[0].evolves_to[0].species.url}
-                            data-name={pokemonEvolution.chain.evolves_to[0].evolves_to[0].species.name}>
-                            {pokemonEvolution.chain.evolves_to[0].evolves_to[0].species.name.charAt(0).toUpperCase() + pokemonEvolution.chain.evolves_to[0].evolves_to[0].species.name.slice(1)}
-                          </p>
-                        </> :
-                        <p
-                          className={pokemonDetails.name === pokemonEvolution.chain.evolves_to[0].species.name ? "active" : ""}
-                          onClick={e => this.handleGetPokemonDetails(e)}
-                          id={pokemonEvolution.chain.evolves_to[0].species.url}
-                          data-name={pokemonEvolution.chain.evolves_to[0].species.name}>
-                          {pokemonEvolution.chain.evolves_to[0].species.name.charAt(0).toUpperCase() + pokemonEvolution.chain.evolves_to[0].species.name.slice(1)}
-                        </p>
+                        </Link>
                       : <p>This Pokémon does not evolve.</p>
                   }
                 </div>
